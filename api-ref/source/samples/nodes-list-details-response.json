@@ -186,6 +186,7 @@
       "resource_class": null,
       "retired": false,
       "retired_reason": null,
+      "security_interface": null,
       "states": [
         {
           "href": "http://127.0.0.1:6385/v1/nodes/2b045129-a906-46af-bc1a-092b294b3428/states",

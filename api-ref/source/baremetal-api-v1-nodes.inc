@@ -104,6 +104,9 @@ supplied when the Node is created, or the resource may be updated later.
 .. versionadded:: 1.65
   Introduced the ``lessee`` field.
 
+.. versionadded:: 1.69
+  Introduced the ``security_interface`` field.
+
 Normal response codes: 201
 
 Error codes: 400,403,406
@@ -129,6 +132,7 @@ Request
     - raid_interface: req_raid_interface
     - rescue_interface: req_rescue_interface
     - resource_class: req_resource_class_create
+    - security_interface: req_security_interface
     - storage_interface: req_storage_interface
     - uuid: req_uuid
     - vendor_interface: req_vendor_interface
@@ -225,6 +229,8 @@ microversion 1.48.
     - network_data: network_data
     - retired: retired
     - retired_reason: retired_reason
+    - security_interface: security_interface
+
 
 **Example JSON representation of a Node:**
 
@@ -284,6 +290,9 @@ provision state, and maintenance setting for each Node.
 
 .. versionadded:: 1.65
   Introduced the ``lessee`` field.
+
+.. versionadded:: 1.69
+  Introduced the ``security_interface`` field.
 
 Normal response codes: 200
 
@@ -376,6 +385,9 @@ Nova instance, eg. with a request to ``v1/nodes/detail?instance_uuid={NOVA INSTA
 .. versionadded:: 1.65
   Introduced the ``lessee`` field.
 
+.. versionadded:: 1.69
+  Introduced the ``security_interface`` field.
+
 Normal response codes: 200
 
 Error codes: 400,403,406
@@ -445,6 +457,7 @@ Response
     - power_interface: power_interface
     - raid_interface: raid_interface
     - rescue_interface: rescue_interface
+    - security_interface: security_interface
     - storage_interface: storage_interface
     - traits: n_traits
     - vendor_interface: vendor_interface
@@ -512,6 +525,9 @@ only the specified set.
 .. versionadded:: 1.66
   Introduced the ``network_data`` field.
 
+.. versionadded:: 1.69
+  Introduced the ``security_interface`` field.
+
 Normal response codes: 200
 
 Error codes: 400,403,404,406
@@ -567,6 +583,7 @@ Response
     - power_interface: power_interface
     - raid_interface: raid_interface
     - rescue_interface: rescue_interface
+    - security_interface: security_interface
     - storage_interface: storage_interface
     - traits: n_traits
     - vendor_interface: vendor_interface
@@ -664,6 +681,7 @@ Response
     - power_interface: power_interface
     - raid_interface: raid_interface
     - rescue_interface: rescue_interface
+    - security_interface: security_interface
     - storage_interface: storage_interface
     - traits: n_traits
     - vendor_interface: vendor_interface

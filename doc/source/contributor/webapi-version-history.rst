@@ -2,6 +2,15 @@
 REST API Version History
 ========================
 
+1.69 (Victoria, master)
+-----------------------
+
+Added ``security_interface`` field to the node object to allow getting and
+setting the interface.
+
+Added ``default_security_interface`` and ``enabled_security_interfaces``
+fields to the driver object to show the information.
+
 1.68 (Victoria, 16.0)
 -----------------------
 

@@ -9,6 +9,7 @@
   "default_power_interface": "ipmitool",
   "default_raid_interface": "no-raid",
   "default_rescue_interface": "no-rescue",
+  "default_security_interface": "no-security",
   "default_storage_interface": "noop",
   "default_vendor_interface": "no-vendor",
   "enabled_bios_interfaces": [
@@ -43,6 +44,9 @@
   ],
   "enabled_rescue_interfaces": [
     "no-rescue"
+  ],
+  "enabled_security_interfaces": [
+    "no-security"
   ],
   "enabled_storage_interfaces": [
     "noop"

@@ -94,6 +94,11 @@ class AbstractHardwareType(object, metaclass=abc.ABCMeta):
         return [noop.NoRescue]
 
     @property
+    def supported_security_interfaces(self):
+        """List of supported security interfaces."""
+        return [noop.NoSecurity]
+
+    @property
     def supported_storage_interfaces(self):
         """List of supported storage interfaces."""
         return [noop_storage.NoopStorage]

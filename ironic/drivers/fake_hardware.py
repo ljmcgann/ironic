@@ -78,6 +78,11 @@ class FakeHardware(hardware_type.AbstractHardwareType):
         return [fake.FakeRescue, noop.NoRescue]
 
     @property
+    def supported_security_interfaces(self):
+        """List of classes of supported security interfaces."""
+        return [fake.FakeSecurity, noop.NoSecurity]
+
+    @property
     def supported_storage_interfaces(self):
         """List of classes of supported storage interfaces."""
         return [fake.FakeStorage, noop_storage.NoopStorage]

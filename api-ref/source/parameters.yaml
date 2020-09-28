@@ -701,6 +701,13 @@ default_rescue_interface:
   in: body
   required: true
   type: string
+default_security_interface:
+  description: |
+    The default security interface used for a node with a dynamic driver, if
+    no security interface is specified for the node.
+  in: body
+  required: true
+  type: string
 default_storage_interface:
   description: |
     The default storage interface used for a node with a dynamic driver, if
@@ -859,6 +866,12 @@ enabled_raid_interfaces:
 enabled_rescue_interfaces:
   description: |
     The enabled rescue interfaces for this driver.
+  in: body
+  required: true
+  type: list
+enabled_security_interfaces:
+  description: |
+    The enabled security interfaces for this driver.
   in: body
   required: true
   type: list
@@ -1660,6 +1673,12 @@ req_resource_class_create:
   in: body
   required: false
   type: string
+req_security_interface:
+  description: |
+    The interface used for node security, e.g. "no-rescue".
+  in: body
+  required: false
+  type: string
 req_standalone_ports_supported:
   description: |
     Indicates whether ports that are members of this portgroup can be
@@ -1765,6 +1784,12 @@ retired_reason:
     The reason the node is marked as retired.
   in: body
   required: false
+  type: string
+security_interface:
+  description: |
+    Interface used for configuring security on this node, e.g. "no-security".
+  in: body
+  required: true
   type: string
 standalone_ports_supported:
   description: |

@@ -666,6 +666,68 @@ class TestConvertToVersion(db_base.DbTestCase):
         self.assertIsNone(node.bios_interface)
         self.assertEqual({}, node.obj_get_changes())
 
+    def test_security_supported_missing(self):
+        # security_interface not set, should be set to default.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+        delattr(node, 'security_interface')
+        node.obj_reset_changes()
+
+        node._convert_to_version("1.36")
+
+        self.assertIsNone(node.bios_interface)
+        self.assertEqual({'security_interface': None},
+                         node.obj_get_changes())
+
+    def test_security_supported_set(self):
+        # security_interface set, no change required.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.security_interface = 'fake'
+        node.obj_reset_changes()
+        node._convert_to_version("1.36")
+        self.assertEqual('fake', node.security_interface)
+        self.assertEqual({}, node.obj_get_changes())
+
+    def test_security_unsupported_missing(self):
+        # security_interface not set, no change required.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        delattr(node, 'security_interface')
+        node.obj_reset_changes()
+        node._convert_to_version("1.35")
+        self.assertNotIn('security_interface', node)
+        self.assertEqual({}, node.obj_get_changes())
+
+    def test_security_unsupported_set_remove(self):
+        # security_interface set, should be removed.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.security_interface = 'fake'
+        node.obj_reset_changes()
+        node._convert_to_version("1.35")
+        self.assertNotIn('security_interface', node)
+        self.assertEqual({}, node.obj_get_changes())
+
+    def test_security_unsupported_set_no_remove_non_default(self):
+        # security_interface set, should be set to default.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.security_interface = 'fake'
+        node.obj_reset_changes()
+        node._convert_to_version("1.35", False)
+        self.assertIsNone(node.security_interface)
+        self.assertEqual({'security_interface': None}, node.obj_get_changes())
+
+    def test_security_unsupported_set_no_remove_default(self):
+        # security_interface set, no change required.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.security_interface = None
+        node.obj_reset_changes()
+        node._convert_to_version("1.35", False)
+        self.assertIsNone(node.security_interface)
+        self.assertEqual({}, node.obj_get_changes())
+
     def test_fault_supported_missing(self):
         node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
         delattr(node, 'fault')

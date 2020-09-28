@@ -80,6 +80,11 @@ class GenericHardware(hardware_type.AbstractHardwareType):
         return [noop.NoRescue, agent.AgentRescue]
 
     @property
+    def supported_security_interfaces(self):
+        """List of supported security interfaces."""
+        return [noop.NoSecurity]
+
+    @property
     def supported_storage_interfaces(self):
         """List of supported storage interfaces."""
         return [noop_storage.NoopStorage, cinder.CinderStorage,

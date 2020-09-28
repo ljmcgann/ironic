@@ -3153,6 +3153,7 @@ class MiscTestCase(mgr_utils.ServiceSetUpMixin, mgr_utils.CommonMixIn,
                     'raid': {'result': True},
                     'deploy': {'result': True},
                     'network': {'result': True},
+                    'security': {'result': True},
                     'storage': {'result': True},
                     'rescue': {'result': True},
                     'bios': {'result': True}}

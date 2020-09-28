@@ -1,0 +1,14 @@
+---
+features:
+  - |
+    Adds version 1.69 of the REST API, which exposes the ``security_interface``
+    field of the node resource. This version also exposes
+    ``default_security_interface`` and ``enable_security_interfaces`` fields
+    of the driver resource.
+    There is 1 available security interface:
+    * ``noop``: This interface provides nothing regarding security.
+    A security interface can be set when creating or updating a node. Enabled
+    security interfaces are defined via the
+    ``[DEFAULT]/enabled_security_interfaces`` configuration option. A default
+    interface for a created node can be specified with
+    ``[DEFAULT]/default_security_interface`` configuration option.

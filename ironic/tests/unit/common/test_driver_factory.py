@@ -392,6 +392,11 @@ class TestFakeHardware(hardware_type.AbstractHardwareType):
         return [fake.FakeRescue]
 
     @property
+    def supported_security_interfaces(self):
+        """List of supported security interfaces."""
+        return [fake.FakeSecurity]
+
+    @property
     def supported_vendor_interfaces(self):
         """List of supported rescue interfaces."""
         return [fake.FakeVendorB, fake.FakeVendorA]
@@ -568,6 +573,7 @@ class HardwareTypeLoadTestCase(db_base.DbTestCase):
             'power': set(['fake']),
             'raid': set(['fake', 'no-raid']),
             'rescue': set(['fake', 'no-rescue']),
+            'security': set(['fake', 'no-security']),
             'storage': set(['noop']),
             'vendor': set(['fake', 'no-vendor'])
         }

@@ -156,6 +156,7 @@ NODE_SCHEMA = {
         'resource_class': {'type': ['string', 'null'], 'maxLength': 80},
         'retired': {'type': ['string', 'boolean', 'null']},
         'retired_reason': {'type': ['string', 'null']},
+        'security_interface': {'type': ['string', 'null']},
         'storage_interface': {'type': ['string', 'null']},
         'uuid': {'type': ['string', 'null']},
         'vendor_interface': {'type': ['string', 'null']},
@@ -224,6 +225,7 @@ PATCH_ALLOWED_FIELDS = [
     'resource_class',
     'retired',
     'retired_reason',
+    'security_interface',
     'storage_interface',
     'vendor_interface'
 ]
@@ -1172,6 +1174,7 @@ def node_convert_with_links(rpc_node, fields=None, sanitize=True):
             'resource_class',
             'retired',
             'retired_reason',
+            'security_interface',
             'storage_interface',
             'target_power_state',
             'target_provision_state',

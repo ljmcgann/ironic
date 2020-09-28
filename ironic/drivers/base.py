@@ -141,6 +141,12 @@ class BareDriver(object):
     A reference to an instance of :class:RescueInterface.
     """
 
+    security = None
+    """`Standard` attribute for accessing security features.
+
+    A reference to an instance of :class:SecurityInterface.
+    """
+
     storage = None
     """`Standard` attribute for (remote) storage interface.
 
@@ -161,7 +167,8 @@ class BareDriver(object):
     @property
     def optional_interfaces(self):
         """Interfaces that can be no-op."""
-        return ['bios', 'console', 'inspect', 'raid', 'rescue', 'storage']
+        return ['bios', 'console', 'inspect', 'raid', 'rescue', 'security',
+                'storage']
 
     @property
     def all_interfaces(self):
@@ -698,6 +705,31 @@ class RescueInterface(BaseInterface):
         :returns: None
         """
         pass
+
+
+class SecurityInterface(BaseInterface):
+    """Interface for security-related actions."""
+    interface_type = "security"
+
+    def validate_security_status(self, task):
+        """Takes action on the node's security state.
+
+        Grabs the latest information about the node's security state
+        from the attestation machine. Takes an action based on the found
+        state.
+
+        :param task: A TaskManager instance containing the node to act on.
+        :returns: None on success, raises an exception if status is not
+        what we expect.
+        """
+
+    def unregister_node(self, task):
+        """Unregisters the node from the verifier machine.
+
+        :param task: A TaskManager instance containing the node to act on.
+        :returns: None on success, raises an exception if status is not
+        what we expect.
+        """
 
 
 # Representation of a single vendor method metadata

@@ -54,6 +54,15 @@ class NoInterfacesTestCase(base.TestCase):
                               getattr(noop.NoRescue(), method),
                               self.task)
 
+    def test_security(self):
+        self.assertRaises(exception.UnsupportedDriverExtension,
+                          getattr(noop.NoSecurity(),
+                                  'validate_security_status'),
+                          self.task)
+        self.assertRaises(exception.UnsupportedDriverExtension,
+                          getattr(noop.NoSecurity(), 'unregister_node'),
+                          self.task)
+
     def test_vendor(self):
         self.assertRaises(exception.UnsupportedDriverExtension,
                           noop.NoVendor().validate,

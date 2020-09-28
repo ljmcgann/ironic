@@ -70,6 +70,15 @@ class NoRAID(FailMixin, base.RAIDInterface):
         _fail(self, task)
 
 
+class NoSecurity(FailMixin, base.SecurityInterface):
+    """Security interface implementation that raises errors on all requests."""
+    def validate_security_status(self, task):
+        _fail(self, task)
+
+    def unregister_node(self, task):
+        _fail(self, task)
+
+
 class NoBIOS(FailMixin, base.BIOSInterface):
     """BIOS interface implementation that raises errors on all requests."""
 

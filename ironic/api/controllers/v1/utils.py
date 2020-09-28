@@ -773,6 +773,7 @@ VERSIONED_FIELDS = {
     'retired_reason': versions.MINOR_61_NODE_RETIRED,
     'lessee': versions.MINOR_65_NODE_LESSEE,
     'network_data': versions.MINOR_66_NODE_NETWORK_DATA,
+    'security_interface': versions.MINOR_69_NODE_SECURITY_INTERFACE,
 }
 
 for field in V31_FIELDS:
