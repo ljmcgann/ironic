@@ -576,7 +576,7 @@ class AgentClient(object):
         :raises: AgentInProgress when the command fails to execute as the agent
                  is presently executing the prior command.
         :returns: A dict containing command response from agent.
-            See :func:`get_commands_status` for a command result sample.
+    deploy        See :func:`get_commands_status` for a command result sample.
             The value of key command_result is in the form of:
 
             ::
@@ -729,3 +729,23 @@ class AgentClient(object):
                 return self._command(node=node,
                                      method='rescue.finalize_rescue',
                                      params=params)
+
+    @METRICS.timer('AgentClient.get_keylime_info()')
+    def get_keylime_info(self, node):
+        """Retrieve the keylime_agent_uuid, keylime_agent_ip,
+        and Keylime_agent_port parameters
+
+        :param node: A Node object.
+        :raises: IronicException when failed to issue the request or there was
+                 a malformed response from the agent.
+        :raises: AgentAPIError when agent failed to execute specified command.
+        :raises: AgentInProgress when the command fails to execute as the agent
+                 is presently executing the prior command.
+        :returns: A dict containing command response from agent.
+                  See :func:`get_commands_status` for a command result sample.
+        """
+
+        return self._command(node=node,
+                             params={},
+                             method='attestation.get_keylime_info',
+                             wait=True)

@@ -24,6 +24,7 @@ from ironic.drivers.modules import fake
 from ironic.drivers.modules import inspector
 from ironic.drivers.modules import ipxe
 from ironic.drivers.modules import iscsi_deploy
+from ironic.drivers.modules import keylime
 from ironic.drivers.modules.network import flat as flat_net
 from ironic.drivers.modules.network import neutron
 from ironic.drivers.modules.network import noop as noop_net
@@ -82,7 +83,7 @@ class GenericHardware(hardware_type.AbstractHardwareType):
     @property
     def supported_security_interfaces(self):
         """List of supported security interfaces."""
-        return [noop.NoSecurity]
+        return [noop.NoSecurity, keylime.KeylimeSecurity]
 
     @property
     def supported_storage_interfaces(self):

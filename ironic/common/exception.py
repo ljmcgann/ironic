@@ -808,3 +808,8 @@ class UnknownAttribute(ClientSideError):
 class AgentInProgress(IronicException):
     _msg_fmt = _('Node %(node)s command "%(command)s" failed. Agent is '
                  'presently executing a command. Error %(error)s')
+
+
+class AttestationFailure(IronicException):
+    _msg_fmt = _('Agent has failed attestation. Remote verifier returned '
+                 'status %(status)s for agent for node %(node)s.')

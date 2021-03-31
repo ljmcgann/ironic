@@ -34,6 +34,7 @@ CLEANING_INTERFACE_PRIORITY = {
     'deploy': 3,
     'bios': 2,
     'raid': 1,
+    'security': 6,
 }
 
 DEPLOYING_INTERFACE_PRIORITY = {
@@ -48,6 +49,7 @@ DEPLOYING_INTERFACE_PRIORITY = {
     'deploy': 3,
     'bios': 2,
     'raid': 1,
+    'security': 6,
 }
 
 
