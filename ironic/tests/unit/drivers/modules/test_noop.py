@@ -30,9 +30,22 @@ def hardware_interface_extension_manager(interface):
 
 
 class NoInterfacesTestCase(base.TestCase):
-    iface_types = ['bios', 'console', 'inspect', 'raid', 'rescue', 'vendor']
+    iface_types = ['attestation', 'bios', 'console', 'inspect', 'raid',
+                   'rescue', 'vendor']
     task = mock.Mock(node=mock.Mock(driver='pxe_foobar', spec=['driver']),
                      spec=['node'])
+
+    def test_attestation(self):
+        self.assertRaises(exception.UnsupportedDriverExtension,
+                          getattr(noop.NoAttestation(), 'start_attestation'),
+                          self.task)
+        self.assertRaises(exception.UnsupportedDriverExtension,
+                          getattr(noop.NoAttestation(),
+                                  'validate_security_status'),
+                          self.task)
+        self.assertRaises(exception.UnsupportedDriverExtension,
+                          getattr(noop.NoAttestation(), 'unregister_node'),
+                          self.task)
 
     def test_bios(self):
         self.assertRaises(exception.UnsupportedDriverExtension,

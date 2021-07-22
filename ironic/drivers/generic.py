@@ -41,6 +41,11 @@ class GenericHardware(hardware_type.AbstractHardwareType):
     """
 
     @property
+    def supported_attestation_interfaces(self):
+        """List of supported attestation interfaces."""
+        return [noop.NoAttestation]
+
+    @property
     def supported_boot_interfaces(self):
         """List of supported boot interfaces."""
         return [ipxe.iPXEBoot, pxe.PXEBoot]

@@ -81,6 +81,12 @@ class BareDriver(object):
     class, as well as appended to core_interfaces or standard_interfaces here.
     """
 
+    attestation = None
+    """`Standard` attribute for accessing attestation features.
+
+    A reference to an instance of :class:AttestationInterface.
+    """
+
     bios = None
     """`Standard` attribute for BIOS related features.
 
@@ -161,7 +167,8 @@ class BareDriver(object):
     @property
     def optional_interfaces(self):
         """Interfaces that can be no-op."""
-        return ['bios', 'console', 'inspect', 'raid', 'rescue', 'storage']
+        return ['attestation', 'bios', 'console', 'inspect', 'raid', 'rescue',
+                'storage']
 
     @property
     def all_interfaces(self):
@@ -703,6 +710,41 @@ class RescueInterface(BaseInterface):
         :returns: None
         """
         pass
+
+
+class AttestationInterface(BaseInterface):
+    """Interface for attestation-related actions."""
+    interface_type = "attestation"
+
+    def start_attestation(self, task):
+        """Kicks off attestation.
+
+        Orchestrates any calls needed with remote verifier machines to
+        kickoff attestation of the node.
+
+        :param task: A TaskManager instance containing the node to act on.
+        :returns: None on success, raises an exception if status is not
+        what we expect.
+        """
+    def validate_security_status(self, task):
+        """Grabs and takes action on the node's security state.
+
+        Grabs the latest information about the node's security state
+        from the attestation machine. Takes an action based on the found
+        state.
+
+        :param task: A TaskManager instance containing the node to act on.
+        :returns: None on success, raises an exception if status is not
+        what we expect.
+        """
+
+    def unregister_node(self, task):
+        """Unregisters the node from the verifier machine.
+
+        :param task: A TaskManager instance containing the node to act on.
+        :returns: None on success, raises an exception if status is not
+        what we expect.
+        """
 
 
 # Representation of a single vendor method metadata

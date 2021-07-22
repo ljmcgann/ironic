@@ -2,7 +2,20 @@
 REST API Version History
 ========================
 
+<<<<<<< HEAD
 1.75 (Xena, 18.1)
+=======
+
+1.75 (Xena, ?)
+----------------------
+Added ``attestation_interface`` field to the node object to allow getting and
+setting the interface.
+
+Added ``default_attestation_interface`` and ``enabled_attestation_interfaces``
+fields to the driver object to show the information.
+
+1.75 (Xena, ?)
+>>>>>>> 2d671bb17... Adds Attestation Interface to Node
 ----------------------
 Add `boot_mode` and `secure_boot` to node object and expose their state at:
 

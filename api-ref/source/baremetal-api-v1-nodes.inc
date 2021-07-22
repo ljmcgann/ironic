@@ -104,6 +104,9 @@ supplied when the Node is created, or the resource may be updated later.
 .. versionadded:: 1.65
   Introduced the ``lessee`` field.
 
+.. versionadded:: 1.76
+  Introduced the ``attestation_interface`` field.
+
 Normal response codes: 201
 
 Error codes: 400,403,406
@@ -113,6 +116,7 @@ Request
 
 .. rest_parameters:: parameters.yaml
 
+    - attestation_interface: req_attestation_interface
     - boot_interface: req_boot_interface
     - conductor_group: req_conductor_group
     - console_interface: req_console_interface
@@ -225,6 +229,8 @@ microversion 1.48.
     - network_data: network_data
     - retired: retired
     - retired_reason: retired_reason
+    - attestation_interface: attestation_interface
+
 
 **Example JSON representation of a Node:**
 
@@ -284,6 +290,9 @@ provision state, and maintenance setting for each Node.
 
 .. versionadded:: 1.65
   Introduced the ``lessee`` field.
+
+.. versionadded:: 1.76
+  Introduced the ``attestation_interface`` field.
 
 Normal response codes: 200
 
@@ -376,6 +385,9 @@ Nova instance, eg. with a request to ``v1/nodes/detail?instance_uuid={NOVA INSTA
 .. versionadded:: 1.65
   Introduced the ``lessee`` field.
 
+.. versionadded:: 1.76
+  Introduced the ``attestation_interface`` field.
+
 Normal response codes: 200
 
 Error codes: 400,403,406
@@ -436,6 +448,7 @@ Response
     - portgroups: n_portgroups
     - states: n_states
     - resource_class: resource_class
+    - attestation_interface: attestation_interface
     - bios_interface: bios_interface
     - boot_interface: boot_interface
     - console_interface: console_interface
@@ -513,6 +526,9 @@ only the specified set.
 .. versionadded:: 1.66
   Introduced the ``network_data`` field.
 
+.. versionadded:: 1.76
+  Introduced the ``attestation_interface`` field.
+
 Normal response codes: 200
 
 Error codes: 400,403,404,406
@@ -559,6 +575,7 @@ Response
     - portgroups: n_portgroups
     - states: n_states
     - resource_class: resource_class
+    - attestation_interface: attestation_interface
     - bios_interface: bios_interface
     - boot_interface: boot_interface
     - console_interface: console_interface
@@ -657,6 +674,7 @@ Response
     - portgroups: n_portgroups
     - states: n_states
     - resource_class: resource_class
+    - attestation_interface: attestation_interface
     - boot_interface: boot_interface
     - console_interface: console_interface
     - deploy_interface: deploy_interface

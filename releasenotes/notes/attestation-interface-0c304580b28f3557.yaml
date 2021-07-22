@@ -1,0 +1,14 @@
+---
+features:
+  - |
+    Adds version 1.76 of the REST API, which exposes the
+    ``attestation_interface`` field of the node resource. This version also
+    exposes ``default_attestation_interface`` and
+    ``enable_attestation_interfaces`` fields of the driver resource.
+    There is 1 available attestation interface: * ``noop``: This interface
+    provides nothing regarding attestation. An attestation interface can be
+    set when creating or updating a node.
+    Enabled attestation interfaces are defined via the
+    ``[DEFAULT]/enabled_attestation_interfaces`` configuration option. A
+    default interface for a created node can be specified with
+    ``[DEFAULT]/default_attestation_interface`` configuration option.

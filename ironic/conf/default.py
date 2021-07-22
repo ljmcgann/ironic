@@ -95,6 +95,11 @@ driver_opts = [
                        'A complete list of hardware types present on your '
                        'system may be found by enumerating the '
                        '"ironic.hardware.types" entrypoint.')),
+    cfg.StrOpt('default_attestation_interface',
+               help=_DEFAULT_IFACE_HELP.format('attestation')),
+    cfg.ListOpt('enabled_attestation_interfaces',
+                default=['no-attestation'],
+                help=_ENABLED_IFACE_HELP.format('attestation')),
     cfg.ListOpt('enabled_bios_interfaces',
                 default=['no-bios'],
                 help=_ENABLED_IFACE_HELP.format('bios')),

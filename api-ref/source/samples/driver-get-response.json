@@ -1,4 +1,5 @@
 {
+  "default_attestation_interface": "no-attestation",
   "default_bios_interface": "no-bios",
   "default_boot_interface": "pxe",
   "default_console_interface": "no-console",
@@ -11,6 +12,9 @@
   "default_rescue_interface": "no-rescue",
   "default_storage_interface": "noop",
   "default_vendor_interface": "no-vendor",
+  "enabled_attestation_interfaces": [
+    "no-attestation"
+  ],
   "enabled_bios_interfaces": [
     "no-bios"
   ],

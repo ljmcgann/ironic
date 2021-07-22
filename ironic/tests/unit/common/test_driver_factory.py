@@ -367,6 +367,11 @@ class DefaultInterfaceTestCase(db_base.DbTestCase):
 
 class TestFakeHardware(hardware_type.AbstractHardwareType):
     @property
+    def supported_attestation_interfaces(self):
+        """List of supported attestation interfaces."""
+        return [fake.FakeAttestation]
+
+    @property
     def supported_bios_interfaces(self):
         """List of supported bios interfaces."""
         return [fake.FakeBIOS]
@@ -589,6 +594,7 @@ class HardwareTypeLoadTestCase(db_base.DbTestCase):
     def _test_enabled_supported_interfaces(self, enable_storage):
         ht = fake_hardware.FakeHardware()
         expected = {
+            'attestation': set(['fake', 'no-attestation']),
             'bios': set(['fake', 'no-bios']),
             'boot': set(['fake']),
             'console': set(['fake', 'no-console']),

@@ -70,6 +70,21 @@ class NoRAID(FailMixin, base.RAIDInterface):
         _fail(self, task)
 
 
+class NoAttestation(FailMixin, base.AttestationInterface):
+    """Attestation interface implementation that raises errors on all requests.
+
+    """
+
+    def start_attestation(self, task):
+        _fail(self, task)
+
+    def validate_security_status(self, task):
+        _fail(self, task)
+
+    def unregister_node(self, task):
+        _fail(self, task)
+
+
 class NoBIOS(FailMixin, base.BIOSInterface):
     """BIOS interface implementation that raises errors on all requests."""
 

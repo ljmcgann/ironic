@@ -2,6 +2,7 @@
   "nodes": [
     {
       "allocation_uuid": "5344a3e2-978a-444e-990a-cbf47c62ef88",
+      "attestation_interface": null,
       "boot_interface": null,
       "chassis_uuid": null,
       "clean_step": {},

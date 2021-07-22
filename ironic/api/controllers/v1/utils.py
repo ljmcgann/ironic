@@ -805,6 +805,7 @@ VERSIONED_FIELDS = {
     'network_data': versions.MINOR_66_NODE_NETWORK_DATA,
     'boot_mode': versions.MINOR_75_NODE_BOOT_MODE,
     'secure_boot': versions.MINOR_75_NODE_BOOT_MODE,
+    'attestation_interface': versions.MINOR_76_NODE_ATTESTATION_INTERFACE,
 }
 
 for field in V31_FIELDS:

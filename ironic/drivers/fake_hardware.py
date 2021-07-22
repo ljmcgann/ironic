@@ -33,6 +33,11 @@ class FakeHardware(hardware_type.AbstractHardwareType):
     configuration.
     """
     @property
+    def supported_attestation_interfaces(self):
+        """List of classes of supported attestation interfaces."""
+        return [fake.FakeAttestation, noop.NoAttestation]
+
+    @property
     def supported_bios_interfaces(self):
         """List of classes of supported bios interfaces."""
         return [fake.FakeBIOS, noop.NoBIOS]

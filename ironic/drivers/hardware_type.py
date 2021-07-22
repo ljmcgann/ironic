@@ -63,6 +63,12 @@ class AbstractHardwareType(object, metaclass=abc.ABCMeta):
         """List of supported power interfaces."""
 
     # Optional hardware interfaces
+
+    @property
+    def supported_attestation_interfaces(self):
+        """List of supported attestation interfaces."""
+        return [noop.NoAttestation]
+
     @property
     def supported_bios_interfaces(self):
         """List of supported bios interfaces."""

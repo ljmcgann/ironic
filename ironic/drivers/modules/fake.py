@@ -288,6 +288,24 @@ class FakeRAID(base.RAIDInterface):
         pass
 
 
+class FakeAttestation(base.AttestationInterface):
+    """Example interface implementation of a simple AttestationInterface."""
+    def get_properties(self):
+        return {}
+
+    def validate(self, task):
+        pass
+
+    def start_attestation(self, task):
+        pass
+
+    def validate_security_status(self, task):
+        pass
+
+    def unregister_node(self, task):
+        pass
+
+
 class FakeBIOS(base.BIOSInterface):
     """Fake implementation of simple BIOSInterface."""
 

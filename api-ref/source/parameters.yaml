@@ -493,6 +493,13 @@ allocation_uuid:
   in: body
   required: true
   type: string
+attestation_interface:
+  description: |
+    Interface used for configuring attestation on this node, e.g.
+    "no-attestation".
+  in: body
+  required: true
+  type: string
 automated_clean:
   description: |
     Indicates whether the node will perform automated clean or not.
@@ -694,6 +701,13 @@ d_bios_setting:
   in: body
   required: true
   type: dictionary
+default_attestation_interface:
+  description: |
+    The default attestation interface used for a node with a dynamic driver, if
+    no attestation interface is specified for the node.
+  in: body
+  required: true
+  type: string
 default_bios_interface:
   description: |
     The default bios interface used for a node with a dynamic driver, if no
@@ -882,6 +896,12 @@ drivers:
   in: body
   required: true
   type: array
+enabled_attestation_interfaces:
+  description: |
+    The enabled attestation interfaces for this driver.
+  in: body
+  required: true
+  type: list
 enabled_bios_interfaces:
   description: |
     The enabled bios interfaces for this driver.
@@ -1453,6 +1473,12 @@ req_allocation_traits:
   in: body
   required: false
   type: array
+req_attestation_interface:
+  description: |
+    The interface used for node attestation, e.g. "no-attestation".
+  in: body
+  required: false
+  type: string
 req_automated_clean:
   description: |
     Indicates whether the node will perform automated clean or not.

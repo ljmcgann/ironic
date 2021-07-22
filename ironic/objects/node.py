@@ -77,7 +77,8 @@ class Node(base.IronicObject, object_base.VersionedObjectDictCompat):
     # Version 1.34: Add lessee field
     # Version 1.35: Add network_data field
     # Version 1.36: Add boot_mode and secure_boot fields
-    VERSION = '1.36'
+    # Version 1.37: Add attestation_interface field
+    VERSION = '1.37'
 
     dbapi = db_api.get_instance()
 
@@ -148,6 +149,7 @@ class Node(base.IronicObject, object_base.VersionedObjectDictCompat):
         'protected_reason': object_fields.StringField(nullable=True),
         'allocation_id': object_fields.IntegerField(nullable=True),
 
+        'attestation_interface': object_fields.StringField(nullable=True),
         'bios_interface': object_fields.StringField(nullable=True),
         'boot_interface': object_fields.StringField(nullable=True),
         'console_interface': object_fields.StringField(nullable=True),
@@ -649,6 +651,10 @@ class Node(base.IronicObject, object_base.VersionedObjectDictCompat):
             should be set to empty dict (or removed).
         Version 1.36: boot_mode, secure_boot were was added. Defaults are None.
             For versions prior to this, it should be set to None or removed.
+        Version 1.37: attestation_interface field was added. Its default
+        value is
+            None. For versions prior to this, it should be set to None (or
+            removed).
 
         :param target_version: the desired version of the object
         :param remove_unavailable_fields: True to remove fields that are
@@ -664,7 +670,7 @@ class Node(base.IronicObject, object_base.VersionedObjectDictCompat):
                   ('automated_clean', 28), ('protected_reason', 29),
                   ('owner', 30), ('allocation_id', 31), ('description', 32),
                   ('retired_reason', 33), ('lessee', 34), ('boot_mode', 36),
-                  ('secure_boot', 36)]
+                  ('secure_boot', 36), ('attestation_interface', 37)]
 
         for name, minor in fields:
             self._adjust_field_to_version(name, None, target_version,
@@ -698,6 +704,7 @@ class NodePayload(notification.NotificationPayloadBase):
     #   external services
     # - being internal-only or hardware-related fields
     SCHEMA = {
+        'attestation_interface': ('node', 'attestation_interface'),
         'clean_step': ('node', 'clean_step'),
         'conductor_group': ('node', 'conductor_group'),
         'console_enabled': ('node', 'console_enabled'),
@@ -763,8 +770,10 @@ class NodePayload(notification.NotificationPayloadBase):
     # Version 1.14: Add retired and retired_reason fields exposed via API.
     # Version 1.15: Add node lessee field.
     # Version 1.16: Add boot_mode and secure_boot fields.
-    VERSION = '1.16'
+    # Version 1.17: Add security interface field exposed via API.
+    VERSION = '1.17'
     fields = {
+        'attestation_interface': object_fields.StringField(nullable=True),
         'clean_step': object_fields.FlexibleDictField(nullable=True),
         'conductor_group': object_fields.StringField(nullable=True),
         'console_enabled': object_fields.BooleanField(nullable=True),
@@ -855,7 +864,8 @@ class NodeSetPowerStatePayload(NodePayload):
     # Version 1.14: Parent NodePayload version 1.14
     # Version 1.15: Parent NodePayload version 1.15
     # Version 1.16: Parent NodePayload version 1.16
-    VERSION = '1.16'
+    # Version 1.17: Parent NodePayload version 1.17
+    VERSION = '1.17'
 
     fields = {
         # "to_power" indicates the future target_power_state of the node. A
@@ -912,7 +922,8 @@ class NodeCorrectedPowerStatePayload(NodePayload):
     # Version 1.14: Parent NodePayload version 1.14
     # Version 1.15: Parent NodePayload version 1.15
     # Version 1.16: Parent NodePayload version 1.16
-    VERSION = '1.16'
+    # Version 1.17: Parent NodePayload version 1.17
+    VERSION = '1.17'
 
     fields = {
         'from_power': object_fields.StringField(nullable=True)
@@ -954,7 +965,8 @@ class NodeSetProvisionStatePayload(NodePayload):
     # Version 1.15: Parent NodePayload version 1.15
     # Version 1.16: add driver_internal_info
     # Version 1.17: Parent NodePayload version 1.16
-    VERSION = '1.17'
+    # Version 1.18: Parent NodePayload version 1.17
+    VERSION = '1.18'
 
     SCHEMA = dict(NodePayload.SCHEMA,
                   **{'instance_info': ('node', 'instance_info'),
@@ -1004,7 +1016,8 @@ class NodeCRUDPayload(NodePayload):
     # Version 1.12: Parent NodePayload version 1.14
     # Version 1.13: Parent NodePayload version 1.15
     # Version 1.14: Parent NodePayload version 1.16
-    VERSION = '1.14'
+    # Version 1.15: Parent NodePayload version 1.17
+    VERSION = '1.15'
 
     SCHEMA = dict(NodePayload.SCHEMA,
                   **{'instance_info': ('node', 'instance_info'),

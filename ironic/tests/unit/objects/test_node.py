@@ -764,6 +764,69 @@ class TestConvertToVersion(db_base.DbTestCase):
         self.assertIsNone(node.bios_interface)
         self.assertEqual({}, node.obj_get_changes())
 
+    def test_attestation_supported_missing(self):
+        # attestation_interface not set, should be set to default.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+        delattr(node, 'attestation_interface')
+        node.obj_reset_changes()
+
+        node._convert_to_version("1.37")
+
+        self.assertIsNone(node.bios_interface)
+        self.assertEqual({'attestation_interface': None},
+                         node.obj_get_changes())
+
+    def test_attestation_supported_set(self):
+        # attestation_interface set, no change required.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.attestation_interface = 'fake'
+        node.obj_reset_changes()
+        node._convert_to_version("1.37")
+        self.assertEqual('fake', node.attestation_interface)
+        self.assertEqual({}, node.obj_get_changes())
+
+    def test_attestation_unsupported_missing(self):
+        # attestation_interface not set, no change required.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        delattr(node, 'attestation_interface')
+        node.obj_reset_changes()
+        node._convert_to_version("1.36")
+        self.assertNotIn('attestation_interface', node)
+        self.assertEqual({}, node.obj_get_changes())
+
+    def test_attestation_unsupported_set_remove(self):
+        # attestation_interface set, should be removed.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.attestation_interface = 'fake'
+        node.obj_reset_changes()
+        node._convert_to_version("1.36")
+        self.assertNotIn('attestation_interface', node)
+        self.assertEqual({}, node.obj_get_changes())
+
+    def test_attestation_unsupported_set_no_remove_non_default(self):
+        # attestation_interface set, should be set to default.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.attestation_interface = 'fake'
+        node.obj_reset_changes()
+        node._convert_to_version("1.36", False)
+        self.assertIsNone(node.attestation_interface)
+        self.assertEqual({'attestation_interface': None},
+                         node.obj_get_changes())
+
+    def test_attestation_unsupported_set_no_remove_default(self):
+        # attestation_interface set, no change required.
+        node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
+
+        node.attestation_interface = None
+        node.obj_reset_changes()
+        node._convert_to_version("1.36", False)
+        self.assertIsNone(node.attestation_interface)
+        self.assertEqual({}, node.obj_get_changes())
+
     def test_fault_supported_missing(self):
         node = obj_utils.get_test_node(self.ctxt, **self.fake_node)
         delattr(node, 'fault')

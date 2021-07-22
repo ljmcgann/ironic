@@ -138,6 +138,7 @@ def node_schema():
     return {
         'type': 'object',
         'properties': {
+            'attestation_interface': {'type': ['string', 'null']},
             'automated_clean': {'type': ['string', 'boolean', 'null']},
             'bios_interface': {'type': ['string', 'null']},
             'boot_interface': {'type': ['string', 'null']},
@@ -231,6 +232,7 @@ def node_patch_validator(name, value):
 
 
 PATCH_ALLOWED_FIELDS = [
+    'attestation_interface',
     'automated_clean',
     'bios_interface',
     'boot_interface',
@@ -1222,7 +1224,8 @@ class NodeTraitsController(rest.RestController):
 
 def _get_fields_for_node_query(fields=None):
 
-    valid_fields = ['automated_clean',
+    valid_fields = ['attestation_interface',
+                    'automated_clean',
                     'bios_interface',
                     'boot_interface',
                     'boot_mode',

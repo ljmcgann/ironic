@@ -192,6 +192,7 @@ class Node(Base):
                            nullable=True)
     description = Column(Text, nullable=True)
 
+    attestation_interface = Column(String(255), nullable=True)
     bios_interface = Column(String(255), nullable=True)
     boot_interface = Column(String(255), nullable=True)
     console_interface = Column(String(255), nullable=True)

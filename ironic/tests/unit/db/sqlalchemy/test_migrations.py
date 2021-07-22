@@ -1053,6 +1053,13 @@ class MigrationCheckersMixin(object):
         col_names = [column.name for column in ports.c]
         self.assertIn('name', col_names)
 
+    def _check_aaf44c5544d7(self, engine, data):
+        nodes = db_utils.get_table(engine, 'nodes')
+        col_names = [column.name for column in nodes.c]
+        self.assertIn('attestation_interface', col_names)
+        self.assertIsInstance(nodes.c.attestation_interface.type,
+                              sqlalchemy.types.String)
+
     def test_upgrade_and_version(self):
         with patch_with_engine(self.engine):
             self.migration_api.upgrade('head')
